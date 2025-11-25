@@ -55,7 +55,12 @@ String tResultado = "";
 double tPi = 3.141592653589793;
 double tEPS = 0.00000001;
 // GIFs animados para funciones trigonométricas
-Gif gifSIN, gifCOS, gifTAN, gifSEC, gifCSC, gifCOT;
+Gif gifSIN;
+Gif gifCOS;
+Gif gifTAN;
+Gif gifSEC;
+Gif gifCSC;
+Gif gifCOT;
 
 // JUEGO VIRUS
 boolean juegoVirus = false;
