@@ -20,12 +20,6 @@ boolean coloresAzules = false;  // true cuando está en pantalla 10
 // Fondo animado
 float animacionFondo = 0;
 
-// MENÚ OPERACIONES MATEMÁTICAS
-// Pantalla 6 = Menú Operaciones
-// Pantalla 7 = Multiplicación Rusa
-// Pantalla 8 = Clave de un Número
-// Pantalla 9 = Funciones Trigonométricas (Taylor)
-
 // MULTIPLICACIÓN RUSA (Pantalla 7)
 boolean rusaEscribiendoM = false;
 boolean rusaEscribiendoN = false;
@@ -52,7 +46,6 @@ int tAnguloAbs = 0;
 boolean tNTieneValor = false;
 int tN = 0;
 String tResultado = "";
-double tPi = 3.141592653589793;
 double tEPS = 0.00000001;
 Gif gifSIN;
 Gif gifCOS;
@@ -149,8 +142,6 @@ void setup() {
 
   // Cargar logo
   logoImagen = loadImage("logo.png");
-
-  // Los GIFs se cargan cuando se entra a pantalla 9
 
   // Fuentes
   fuente = createFont("Courier New", 28);
@@ -283,6 +274,147 @@ void setup() {
     .setFont(fuente)
     .hide();
 
+  // Botones de Procesos Matemáticos (pantalla 10)
+  cp5.addButton("btnMultRusa")
+    .setPosition(width/2-450, height/2-90)
+    .setSize(400, 70)
+    .setLabel("[ MULTIPLICACIÓN RUSA ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnFuncTrig")
+    .setPosition(width/2+50, height/2-90)
+    .setSize(400, 70)
+    .setLabel("[ FUNC. TRIGONOMÉTRICAS ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnClaveNum")
+    .setPosition(width/2-200, height/2+30)
+    .setSize(400, 70)
+    .setLabel("[ CLAVE DE UN NÚMERO ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  // Botones de funciones trigonométricas (pantalla 9)
+  int btnTrigBaseX = width/2 - 440;
+  cp5.addButton("btnSIN")
+    .setPosition(btnTrigBaseX, 195)
+    .setSize(130, 40)
+    .setLabel("SIN")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnCOS")
+    .setPosition(btnTrigBaseX + 145, 195)
+    .setSize(130, 40)
+    .setLabel("COS")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnTAN")
+    .setPosition(btnTrigBaseX + 290, 195)
+    .setSize(130, 40)
+    .setLabel("TAN")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnSEC")
+    .setPosition(btnTrigBaseX, 245)
+    .setSize(130, 40)
+    .setLabel("SEC")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnCSC")
+    .setPosition(btnTrigBaseX + 145, 245)
+    .setSize(130, 40)
+    .setLabel("CSC")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnCOT")
+    .setPosition(btnTrigBaseX + 290, 245)
+    .setSize(130, 40)
+    .setLabel("COT")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  // Botones Calcular y Limpiar para Multiplicación Rusa (pantalla 7)
+  cp5.addButton("btnCalcRusa")
+    .setPosition(width/2 - 200, 660)
+    .setSize(180, 50)
+    .setLabel("[ CALCULAR ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnLimpRusa")
+    .setPosition(width/2 + 20, 660)
+    .setSize(180, 50)
+    .setLabel("[ LIMPIAR ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  // Botones Calcular y Limpiar para Clave de un Número (pantalla 8)
+  cp5.addButton("btnCalcClave")
+    .setPosition(width/2 - 200, 660)
+    .setSize(180, 50)
+    .setLabel("[ CALCULAR ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnLimpClave")
+    .setPosition(width/2 + 20, 660)
+    .setSize(180, 50)
+    .setLabel("[ LIMPIAR ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  // Botones Calcular y Limpiar para Funciones Trigonométricas (pantalla 9)
+  cp5.addButton("btnCalcTrig")
+    .setPosition(btnTrigBaseX, 590)
+    .setSize(200, 50)
+    .setLabel("[ CALCULAR ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
+  cp5.addButton("btnLimpTrig")
+    .setPosition(btnTrigBaseX + 220, 590)
+    .setSize(200, 50)
+    .setLabel("[ LIMPIAR ]")
+    .setColorBackground(color(0))
+    .setColorForeground(color(0, 100, 255))
+    .setFont(fuente)
+    .hide();
+
   // Inicializar audio
   minim = new Minim(this);
   out = minim.getLineOut();
@@ -364,6 +496,15 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
     break;
 
   case 1:  // Menu Miscelania Virus
@@ -379,6 +520,15 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
     break;
 
   case 2:  // Juego Virus
@@ -402,6 +552,15 @@ void draw() {
       cp5.getController("btnIniciar").show();
       cp5.getController("btnParar").hide();
     }
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
     break;
 
   case 3:  // Punto y Fama
@@ -417,6 +576,15 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
     break;
 
   case 4:  // Menu Extras
@@ -432,6 +600,15 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
     break;
 
   case 5:  // Hex Conversor
@@ -447,12 +624,143 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
+    cp5.getController("btnCalcRusa").hide();
+    cp5.getController("btnLimpRusa").hide();
+    cp5.getController("btnCalcClave").hide();
+    cp5.getController("btnLimpClave").hide();
+    cp5.getController("btnCalcTrig").hide();
+    cp5.getController("btnLimpTrig").hide();
     break;
 
   case 6:  // Menu Operaciones
+    cp5.getController("btnSalir").show();
+    cp5.getController("btnVolver").show();
+    cp5.getController("btnMiscelaniaVirus").hide();
+    cp5.getController("btnVirus").hide();
+    cp5.getController("btnFama").hide();
+    cp5.getController("btnMargarita").hide();
+    cp5.getController("btnExtras").hide();
+    cp5.getController("btnProcesosMat").hide();
+    cp5.getController("btnHexConversor").hide();
+    cp5.getController("btnOperaciones").hide();
+    cp5.getController("btnIniciar").hide();
+    cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
+    cp5.getController("btnCalcRusa").hide();
+    cp5.getController("btnLimpRusa").hide();
+    cp5.getController("btnCalcClave").hide();
+    cp5.getController("btnLimpClave").hide();
+    cp5.getController("btnCalcTrig").hide();
+    cp5.getController("btnLimpTrig").hide();
+    break;
+
   case 7:  // Multiplicacion Rusa
+    cp5.getController("btnSalir").show();
+    cp5.getController("btnVolver").show();
+    cp5.getController("btnMiscelaniaVirus").hide();
+    cp5.getController("btnVirus").hide();
+    cp5.getController("btnFama").hide();
+    cp5.getController("btnMargarita").hide();
+    cp5.getController("btnExtras").hide();
+    cp5.getController("btnProcesosMat").hide();
+    cp5.getController("btnHexConversor").hide();
+    cp5.getController("btnOperaciones").hide();
+    cp5.getController("btnIniciar").hide();
+    cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
+    cp5.getController("btnCalcRusa").show();
+    cp5.getController("btnLimpRusa").show();
+    cp5.getController("btnCalcClave").hide();
+    cp5.getController("btnLimpClave").hide();
+    cp5.getController("btnCalcTrig").hide();
+    cp5.getController("btnLimpTrig").hide();
+    break;
+
   case 8:  // Clave Numero
+    cp5.getController("btnSalir").show();
+    cp5.getController("btnVolver").show();
+    cp5.getController("btnMiscelaniaVirus").hide();
+    cp5.getController("btnVirus").hide();
+    cp5.getController("btnFama").hide();
+    cp5.getController("btnMargarita").hide();
+    cp5.getController("btnExtras").hide();
+    cp5.getController("btnProcesosMat").hide();
+    cp5.getController("btnHexConversor").hide();
+    cp5.getController("btnOperaciones").hide();
+    cp5.getController("btnIniciar").hide();
+    cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
+    cp5.getController("btnCalcRusa").hide();
+    cp5.getController("btnLimpRusa").hide();
+    cp5.getController("btnCalcClave").show();
+    cp5.getController("btnLimpClave").show();
+    cp5.getController("btnCalcTrig").hide();
+    cp5.getController("btnLimpTrig").hide();
+    break;
+
   case 9:  // Funciones Trig
+    cp5.getController("btnSalir").show();
+    cp5.getController("btnVolver").show();
+    cp5.getController("btnMiscelaniaVirus").hide();
+    cp5.getController("btnVirus").hide();
+    cp5.getController("btnFama").hide();
+    cp5.getController("btnMargarita").hide();
+    cp5.getController("btnExtras").hide();
+    cp5.getController("btnProcesosMat").hide();
+    cp5.getController("btnHexConversor").hide();
+    cp5.getController("btnOperaciones").hide();
+    cp5.getController("btnIniciar").hide();
+    cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").show();
+    cp5.getController("btnCOS").show();
+    cp5.getController("btnTAN").show();
+    cp5.getController("btnSEC").show();
+    cp5.getController("btnCSC").show();
+    cp5.getController("btnCOT").show();
+    cp5.getController("btnCalcRusa").hide();
+    cp5.getController("btnLimpRusa").hide();
+    cp5.getController("btnCalcClave").hide();
+    cp5.getController("btnLimpClave").hide();
+    cp5.getController("btnCalcTrig").show();
+    cp5.getController("btnLimpTrig").show();
+    break;
+
   case 10:  // Menu Procesos Matematicos
     cp5.getController("btnSalir").show();
     cp5.getController("btnVolver").show();
@@ -466,6 +774,21 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").show();
+    cp5.getController("btnFuncTrig").show();
+    cp5.getController("btnClaveNum").show();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
+    cp5.getController("btnCalcRusa").hide();
+    cp5.getController("btnLimpRusa").hide();
+    cp5.getController("btnCalcClave").hide();
+    cp5.getController("btnLimpClave").hide();
+    cp5.getController("btnCalcTrig").hide();
+    cp5.getController("btnLimpTrig").hide();
     break;
 
   case 11:  // La Margarita
@@ -481,6 +804,21 @@ void draw() {
     cp5.getController("btnOperaciones").hide();
     cp5.getController("btnIniciar").hide();
     cp5.getController("btnParar").hide();
+    cp5.getController("btnMultRusa").hide();
+    cp5.getController("btnFuncTrig").hide();
+    cp5.getController("btnClaveNum").hide();
+    cp5.getController("btnSIN").hide();
+    cp5.getController("btnCOS").hide();
+    cp5.getController("btnTAN").hide();
+    cp5.getController("btnSEC").hide();
+    cp5.getController("btnCSC").hide();
+    cp5.getController("btnCOT").hide();
+    cp5.getController("btnCalcRusa").hide();
+    cp5.getController("btnLimpRusa").hide();
+    cp5.getController("btnCalcClave").hide();
+    cp5.getController("btnLimpClave").hide();
+    cp5.getController("btnCalcTrig").hide();
+    cp5.getController("btnLimpTrig").hide();
     break;
   }
 
@@ -1409,88 +1747,208 @@ void draw() {
   case 7:  // MULTIPLICACIÓN RUSA
     // Colores condicionales
     int colorPrincipal7;
-    int colorBoton7;
 
     if (coloresAzules) {
       colorPrincipal7 = color(0, 100, 255);
-      colorBoton7 = color(0, 30, 80);
     } else {
       colorPrincipal7 = color(0, 255, 70);
-      colorBoton7 = color(0, 80, 30);
     }
 
-    fill(colorPrincipal7);
-    textSize(42);
-    text("[ MULTIPLICACIÓN RUSA ]", width/2, 80);
-
-    // Campos de entrada
-    textSize(20);
-    textAlign(LEFT, BASELINE);
-    fill(230);
-    text("Multiplicador:", 150, 160);
-    text("Multiplicando:", 550, 160);
-
-    fill(245);
-    stroke(colorPrincipal7);
-    rect(150, 170, 320, 50, 10);
-    rect(550, 170, 320, 50, 10);
-    noStroke();
-
-    fill(0);
-    textSize(24);
-    String txtRM = "";
-    if (rusaTieneM) txtRM = "" + rusaM;
-    String txtRN = "";
-    if (rusaTieneN) txtRN = "" + rusaN;
-    text(txtRM, 160, 205);
-    text(txtRN, 560, 205);
-
-    // Botones
-    fill(colorBoton7);
-    rect(width/2 - 180, 240, 180, 50, 12);
-    rect(width/2 + 10, 240, 180, 50, 12);
+    // Marco decorativo exterior
     stroke(colorPrincipal7);
     strokeWeight(2);
     noFill();
-    rect(width/2 - 180, 240, 180, 50, 12);
-    rect(width/2 + 10, 240, 180, 50, 12);
-    noStroke();
-    fill(colorPrincipal7);
-    textAlign(CENTER, CENTER);
-    text("CALCULAR", width/2 - 90, 265);
-    text("LIMPIAR", width/2 + 100, 265);
+    rect(80, 50, width - 160, height - 100, 20);
+    strokeWeight(1);
 
-    // Panel Proceso
+    // Título principal
+    fill(colorPrincipal7);
+    textSize(42);
+    textAlign(CENTER, CENTER);
+    text("[ MULTIPLICACIÓN RUSA ]", width/2, 90);
+
+    // Subtítulo explicativo
+    fill(180);
+    textSize(16);
+    text("Método antiguo de multiplicación usando divisiones y duplicaciones", width/2, 125);
+
+    // Panel de entrada con fondo semi-transparente
+    fill(20, 20, 30, 200);
+    stroke(colorPrincipal7);
+    strokeWeight(2);
+    rect(120, 150, width - 240, 130, 15);
+    noStroke();
+
+    // Campos de entrada centrados con X en medio
+    // Layout: [CAMPO M] × [CAMPO N]
+    int campoAncho = 220;
+    int campoAlto = 55;
+    int espacioX = 60;  // espacio para la X
+    int totalAncho = campoAncho * 2 + espacioX;
+    int campoPosX = width/2 - totalAncho/2;
+
+    // Etiquetas
+    textSize(16);
+    textAlign(CENTER, BASELINE);
+    fill(colorPrincipal7);
+    text("MULTIPLICADOR (M)", campoPosX + campoAncho/2, 185);
+    text("MULTIPLICANDO (N)", campoPosX + campoAncho + espacioX + campoAncho/2, 185);
+
+    // Campo M
     fill(245);
     stroke(colorPrincipal7);
-    rect(100, 310, 800, 320, 15);
+    strokeWeight(2);
+    rect(campoPosX, 195, campoAncho, campoAlto, 10);
+
+    // Icono decorativo "×" entre los campos
     noStroke();
+    fill(colorPrincipal7);
+    textSize(50);
+    textAlign(CENTER, CENTER);
+    text("×", campoPosX + campoAncho + espacioX/2, 222);
+
+    // Campo N
+    fill(245);
+    stroke(colorPrincipal7);
+    strokeWeight(2);
+    rect(campoPosX + campoAncho + espacioX, 195, campoAncho, campoAlto, 10);
+    noStroke();
+
+    // Indicador de campo activo
+    if (rusaEscribiendoM) {
+      stroke(colorPrincipal7);
+      strokeWeight(3);
+      noFill();
+      rect(campoPosX, 195, campoAncho, campoAlto, 10);
+      noStroke();
+    }
+    if (rusaEscribiendoN) {
+      stroke(colorPrincipal7);
+      strokeWeight(3);
+      noFill();
+      rect(campoPosX + campoAncho + espacioX, 195, campoAncho, campoAlto, 10);
+      noStroke();
+    }
+
+    // Texto en campos
     fill(0);
+    textSize(28);
+    textAlign(LEFT, CENTER);
+    String txtRM = "";
+    if (rusaTieneM) {
+      txtRM = "" + rusaM;
+    }
+    String txtRN = "";
+    if (rusaTieneN) {
+      txtRN = "" + rusaN;
+    }
+    text(txtRM, campoPosX + 15, 222);
+    text(txtRN, campoPosX + campoAncho + espacioX + 15, 222);
+
+    // Cursor parpadeante
+    if (frameCount % 60 < 30) {
+      stroke(colorPrincipal7);
+      strokeWeight(2);
+      if (rusaEscribiendoM) {
+        float cursorX = campoPosX + 15 + textWidth(txtRM);
+        line(cursorX, 200, cursorX, 245);
+      }
+      if (rusaEscribiendoN) {
+        float cursorX = campoPosX + campoAncho + espacioX + 15 + textWidth(txtRN);
+        line(cursorX, 200, cursorX, 245);
+      }
+      noStroke();
+    }
+
+    // Panel de Proceso/Resultado
+    textAlign(CENTER, CENTER);
+    fill(colorPrincipal7);
+    textSize(20);
+    text("─────────  PROCESO Y RESULTADO  ─────────", width/2, 310);
+
+    // Fondo del panel de proceso
+    fill(10, 10, 20, 220);
+    stroke(colorPrincipal7);
+    strokeWeight(2);
+    rect(120, 330, width - 240, 310, 15);
+    noStroke();
+
+    // Contenido del proceso
+    fill(colorPrincipal7);
     textAlign(LEFT, TOP);
     textSize(18);
-    text(rusaProceso, 120, 330, 760, 290);
+    text(rusaProceso, 145, 350, width - 290, 280);
+
+    // Instrucciones en la parte inferior
+    textAlign(CENTER, CENTER);
+    fill(120);
+    textSize(14);
+    text("Haz clic en un campo para escribir  •  Usa BACKSPACE para borrar  •  Solo números positivos", width/2, height - 35);
+
     textAlign(CENTER, CENTER);
     break;
 
   case 8:  // CLAVE DE UN NÚMERO
     // Colores condicionales
     int colorPrincipal8 = coloresAzules ? color(0, 100, 255) : color(0, 255, 70);
-    int colorBoton8 = coloresAzules ? color(0, 30, 80) : color(0, 80, 30);
 
+    // Marco decorativo exterior
+    stroke(colorPrincipal8);
+    strokeWeight(2);
+    noFill();
+    rect(80, 50, width - 160, height - 100, 20);
+    strokeWeight(1);
+
+    // Título principal
     fill(colorPrincipal8);
     textSize(42);
-    text("[ CLAVE DE UN NÚMERO ]", width/2, 80);
+    textAlign(CENTER, CENTER);
+    text("[ CLAVE DE UN NÚMERO ]", width/2, 90);
 
-    textSize(20);
-    textAlign(LEFT, BASELINE);
-    fill(230);
-    text("Número entero:", 250, 160);
+    // Subtítulo explicativo
+    fill(180);
+    textSize(16);
+    text("Suma ponderada de dígitos: dígito × posición (desde 2)", width/2, 125);
+
+    // Panel de entrada con fondo semi-transparente
+    fill(20, 20, 30, 200);
+    stroke(colorPrincipal8);
+    strokeWeight(2);
+    rect(width/2 - 250, 150, 500, 130, 15);
+    noStroke();
+
+    // Icono decorativo
+    fill(colorPrincipal8, 80);
+    textSize(60);
+    text("∑", width/2 - 180, 215);
+
+    // Etiqueta del campo
+    textSize(18);
+    textAlign(CENTER, BASELINE);
+    fill(colorPrincipal8);
+    text("NÚMERO ENTERO", width/2 + 30, 185);
+
+    // Campo de entrada centrado
+    int claveAncho = 320;
+    int claveAlto = 55;
+    int clavePosX = width/2 - claveAncho/2 + 50;
 
     fill(245);
     stroke(colorPrincipal8);
-    rect(250, 170, 500, 50, 10);
+    strokeWeight(2);
+    rect(clavePosX, 195, claveAncho, claveAlto, 10);
     noStroke();
 
+    // Indicador de campo activo
+    if (claveEscribiendo) {
+      stroke(colorPrincipal8);
+      strokeWeight(3);
+      noFill();
+      rect(clavePosX, 195, claveAncho, claveAlto, 10);
+      noStroke();
+    }
+
+    // Texto en el campo
     String txtClave = "";
     if (claveSignoNeg) {
       if (claveTieneValor) {
@@ -1502,127 +1960,154 @@ void draw() {
       if (claveTieneValor) txtClave = "" + claveValorAbs;
     }
     fill(0);
-    textSize(24);
-    text(txtClave, 260, 205);
+    textSize(28);
+    textAlign(LEFT, CENTER);
+    text(txtClave, clavePosX + 15, 222);
 
-    fill(colorBoton8);
-    rect(width/2 - 180, 240, 180, 50, 12);
-    rect(width/2 + 10, 240, 180, 50, 12);
+    // Cursor parpadeante
+    if (frameCount % 60 < 30 && claveEscribiendo) {
+      stroke(colorPrincipal8);
+      strokeWeight(2);
+      float cursorXClave = clavePosX + 15 + textWidth(txtClave);
+      line(cursorXClave, 200, cursorXClave, 245);
+      noStroke();
+    }
+
+    // Panel de Proceso/Resultado
+    textAlign(CENTER, CENTER);
+    fill(colorPrincipal8);
+    textSize(20);
+    text("─────────  PROCESO Y RESULTADO  ─────────", width/2, 310);
+
+    // Fondo del panel de proceso
+    fill(10, 10, 20, 220);
     stroke(colorPrincipal8);
     strokeWeight(2);
-    noFill();
-    rect(width/2 - 180, 240, 180, 50, 12);
-    rect(width/2 + 10, 240, 180, 50, 12);
+    rect(120, 330, width - 240, 310, 15);
     noStroke();
-    fill(colorPrincipal8);
-    textAlign(CENTER, CENTER);
-    text("CALCULAR", width/2 - 90, 265);
-    text("LIMPIAR", width/2 + 100, 265);
 
-    fill(245);
-    stroke(colorPrincipal8);
-    rect(100, 310, 800, 320, 15);
-    noStroke();
-    fill(0);
+    // Contenido del proceso
+    fill(colorPrincipal8);
     textAlign(LEFT, TOP);
     textSize(18);
-    text(claveProceso, 120, 330, 760, 290);
+    text(claveProceso, 145, 350, width - 290, 280);
+
+    // Fórmula explicativa en el panel
+    if (claveProceso.equals("")) {
+      textAlign(CENTER, CENTER);
+      fill(100);
+      textSize(16);
+      text("La clave se calcula como:", width/2, 400);
+      fill(colorPrincipal8, 150);
+      textSize(20);
+      text("Clave = (d₁×2 + d₂×3 + d₃×4 + ...) mod 10", width/2, 440);
+      fill(100);
+      textSize(14);
+      text("donde d₁ es el último dígito, d₂ el penúltimo, etc.", width/2, 480);
+      text("Si el número es negativo, la clave es -1", width/2, 510);
+    }
+
+    // Instrucciones en la parte inferior
+    textAlign(CENTER, CENTER);
+    fill(120);
+    textSize(14);
+    text("Haz clic en el campo para escribir  •  Usa BACKSPACE para borrar  •  Usa '-' para números negativos", width/2, height - 35);
+
     textAlign(CENTER, CENTER);
     break;
 
   case 9:  // FUNCIONES TRIGONOMÉTRICAS
     // Colores condicionales
     int colorPrincipal9;
-    int colorBotonActivo9;
-    int colorBoton9;
-    int colorBotonCalc9;
 
     if (coloresAzules) {
       colorPrincipal9 = color(0, 100, 255);
-      colorBotonActivo9 = color(0, 60, 180);
-      colorBoton9 = color(0, 30, 80);
-      colorBotonCalc9 = color(0, 30, 80);
     } else {
       colorPrincipal9 = color(0, 255, 70);
-      colorBotonActivo9 = color(0, 180, 60);
-      colorBoton9 = color(0, 50, 20);
-      colorBotonCalc9 = color(0, 80, 30);
     }
 
+    // Marco decorativo exterior
+    stroke(colorPrincipal9);
+    strokeWeight(2);
+    noFill();
+    rect(80, 50, width - 160, height - 100, 20);
+    strokeWeight(1);
+
+    // Título principal
     fill(colorPrincipal9);
     textSize(38);
-    text("[ FUNCIONES TRIGONOMÉTRICAS ]", width/2, 70);
-    textSize(24);
-    text("Series de Taylor", width/2, 110);
+    textAlign(CENTER, CENTER);
+    text("[ FUNCIONES TRIGONOMÉTRICAS ]", width/2, 85);
+
+    // Subtítulo
+    fill(180);
+    textSize(16);
+    text("Aproximación mediante Series de Taylor", width/2, 115);
+
+    // ========== PANEL IZQUIERDO: Entrada de datos ==========
+    int panelIzqX = width/2 - 470;
+    fill(20, 20, 30, 200);
+    stroke(colorPrincipal9);
+    strokeWeight(2);
+    rect(panelIzqX, 140, 480, 510, 15);
+    noStroke();
 
     // Selector de función
+    fill(colorPrincipal9);
+    textSize(18);
     textAlign(LEFT, BASELINE);
-    textSize(22);
-    fill(230);
-    text("Función:", 100, 160);
+    text("SELECCIONAR FUNCIÓN:", panelIzqX + 30, 175);
 
-    textAlign(CENTER, CENTER);
-    int fX = 100;
-    int fY = 180;
-    int fW = 120;
-    int fH = 50;
-    int f = 0;
-    while (f < 6) {
-      int fx = fX + (f % 3) * 140;
-      int fy = fY + (f / 3) * 70;
-      if (taylorFuncion == f + 1) {
-        fill(colorBotonActivo9);
-      } else {
-        fill(colorBoton9);
-      }
-      rect(fx, fy, fW, fH, 10);
-      stroke(colorPrincipal9);
-      noFill();
-      rect(fx, fy, fW, fH, 10);
-      noStroke();
-      fill(colorPrincipal9);
-      String fname = "";
-      switch(f) {
-      case 0:
-        fname = "SIN";
-        break;
-      case 1:
-        fname = "COS";
-        break;
-      case 2:
-        fname = "TAN";
-        break;
-      case 3:
-        fname = "SEC";
-        break;
-      case 4:
-        fname = "CSC";
-        break;
-      default:
-        fname = "COT";
-        break;
-      }
-      text(fname, fx + fW/2, fy + fH/2);
-      f = f + 1;
-    }
+    // Campos de entrada
+    int campoTrigX = panelIzqX + 30;
+    int campoTrigAncho = 420;
+    int campoTrigAlto = 50;
 
-    // Campos
-    textAlign(LEFT, BASELINE);
-    textSize(22);
-    fill(230);
-    text("Ángulo (grados):", 100, 340);
-    text("Términos N:", 100, 430);
+    // Campo Ángulo
+    fill(colorPrincipal9);
+    textSize(16);
+    text("ÁNGULO (GRADOS):", campoTrigX, 320);
 
     fill(245);
     stroke(colorPrincipal9);
-    rect(100, 350, 450, 60, 10);
-    rect(100, 440, 450, 60, 10);
+    strokeWeight(2);
+    rect(campoTrigX, 330, campoTrigAncho, campoTrigAlto, 10);
     noStroke();
 
+    // Indicador campo activo - Ángulo
+    if (tAngEscribiendo) {
+      stroke(colorPrincipal9);
+      strokeWeight(3);
+      noFill();
+      rect(campoTrigX, 330, campoTrigAncho, campoTrigAlto, 10);
+      noStroke();
+    }
+
+    // Campo N (términos)
+    fill(colorPrincipal9);
+    textSize(16);
+    text("TÉRMINOS DE TAYLOR (N):", campoTrigX, 405);
+
+    fill(245);
+    stroke(colorPrincipal9);
+    strokeWeight(2);
+    rect(campoTrigX, 415, campoTrigAncho, campoTrigAlto, 10);
+    noStroke();
+
+    // Indicador campo activo - N
+    if (tNEscribiendo) {
+      stroke(colorPrincipal9);
+      strokeWeight(3);
+      noFill();
+      rect(campoTrigX, 415, campoTrigAncho, campoTrigAlto, 10);
+      noStroke();
+    }
+
+    // Texto en campos
     String txtAng = "";
     if (tAngSignoNeg) {
       if (tAngTieneValor) {
-      txtAng = "-" + tAnguloAbs;
+        txtAng = "-" + tAnguloAbs;
       } else {
         txtAng = "-";
       }
@@ -1633,64 +2118,101 @@ void draw() {
     }
     String txtN = "";
     if (tNTieneValor) txtN = "" + tN;
-    fill(0);
-    textSize(28);
-    text(txtAng, 120, 385);
-    text(txtN, 120, 475);
-
-    // Cuadro de resultado debajo de "Términos N"
-    int resultCuadroX = 100;
-    int resultCuadroY = 520;
-    int resultCuadroW = 450;
-    int resultCuadroH = 80;
-
-    fill(245);
-    stroke(colorPrincipal9);
-    strokeWeight(2);
-    rect(resultCuadroX, resultCuadroY, resultCuadroW, resultCuadroH, 10);
-    noStroke();
-
-    fill(colorPrincipal9);
-    textSize(20);
-    textAlign(LEFT, BASELINE);
-    text("Resultado:", resultCuadroX + 10, resultCuadroY - 8);
 
     fill(0);
     textSize(24);
-    textAlign(CENTER, CENTER);
-    text(tResultado, resultCuadroX + resultCuadroW/2, resultCuadroY + resultCuadroH/2);
+    textAlign(LEFT, CENTER);
+    text(txtAng, campoTrigX + 15, 355);
+    text(txtN, campoTrigX + 15, 440);
 
-    fill(colorBotonCalc9);
-    rect(100, 620, 200, 60, 12);
-    rect(320, 620, 200, 60, 12);
+    // Cursor parpadeante
+    if (frameCount % 60 < 30) {
+      stroke(colorPrincipal9);
+      strokeWeight(2);
+      if (tAngEscribiendo) {
+        float cursorXT = campoTrigX + 15 + textWidth(txtAng);
+        line(cursorXT, 335, cursorXT, 375);
+      }
+      if (tNEscribiendo) {
+        float cursorXT = campoTrigX + 15 + textWidth(txtN);
+        line(cursorXT, 420, cursorXT, 460);
+      }
+      noStroke();
+    }
+
+    // Panel de Resultado
+    fill(colorPrincipal9);
+    textSize(16);
+    textAlign(LEFT, BASELINE);
+    text("RESULTADO:", campoTrigX, 490);
+
+    fill(10, 10, 20, 220);
     stroke(colorPrincipal9);
     strokeWeight(2);
-    noFill();
-    rect(100, 620, 200, 60, 12);
-    rect(320, 620, 200, 60, 12);
+    rect(campoTrigX, 500, campoTrigAncho, 70, 10);
     noStroke();
+
     fill(colorPrincipal9);
     textSize(22);
     textAlign(CENTER, CENTER);
-    text("CALCULAR", 200, 650);
-    text("LIMPIAR", 420, 650);
+    text(tResultado, campoTrigX + campoTrigAncho/2, 535);
 
-    // Panel Resultado (con GIF de la función seleccionada)
-    int panelX = 580;
-    int panelY = 200;
-    int panelW = 420;
-    int panelH = 480;
-    fill(245);
+    // ========== PANEL DERECHO: GIF y fórmula ==========
+    int panelX = width/2 + 30;
+    int panelY = 140;
+    int panelW = 380;
+    int panelH = 510;
+
+    fill(10, 10, 20, 220);
     stroke(colorPrincipal9);
+    strokeWeight(2);
     rect(panelX, panelY, panelW, panelH, 15);
     noStroke();
 
-    // Área de imagen dentro del panel
-    int cMargin = 20;
-    int imgMaxW = panelW - 2*cMargin;   // 380
-    int imgMaxH = 220;                   // alto reservado para GIF
-    int imgAreaX = panelX + cMargin + 100;
-    int imgAreaY = panelY + cMargin + 180;
+    // Título del panel
+    fill(colorPrincipal9);
+    textSize(18);
+    textAlign(CENTER, CENTER);
+    text("VISUALIZACIÓN", panelX + panelW/2, panelY + 25);
+
+    // Nombre de la función seleccionada
+    String nombreFunc = "";
+    switch(taylorFuncion) {
+    case 1:
+      nombreFunc = "SENO (SIN)";
+      break;
+    case 2:
+      nombreFunc = "COSENO (COS)";
+      break;
+    case 3:
+      nombreFunc = "TANGENTE (TAN)";
+      break;
+    case 4:
+      nombreFunc = "SECANTE (SEC)";
+      break;
+    case 5:
+      nombreFunc = "COSECANTE (CSC)";
+      break;
+    case 6:
+      nombreFunc = "COTANGENTE (COT)";
+      break;
+    }
+    fill(colorPrincipal9, 180);
+    textSize(22);
+    text(nombreFunc, panelX + panelW/2, panelY + 60);
+
+    // Área del GIF
+    int imgMaxW = panelW - 40;
+    int imgMaxH = 280;
+    int imgAreaX = panelX + 20;
+    int imgAreaY = panelY + 90;
+
+    // Marco para el GIF
+    stroke(colorPrincipal9, 100);
+    strokeWeight(1);
+    noFill();
+    rect(imgAreaX, imgAreaY, imgMaxW, imgMaxH, 10);
+    noStroke();
 
     Gif gifActual = null;
     switch(taylorFuncion) {
@@ -1714,35 +2236,30 @@ void draw() {
       break;
     }
 
-    if (gifActual != null) {
-      float iw = gifActual.width;
-      float ih = gifActual.height;
-      float s = min((float)imgMaxW/iw, (float)imgMaxH/ih);
-      int dw = int(iw * s);
-      int dh = int(ih * s);
-      int dx = imgAreaX + (imgMaxW - dw)/2;
-      int dy = imgAreaY + (imgMaxH - dh)/2;
-      image(gifActual, dx, dy, dw, dh);
-    } else {
-      // Mensaje si falta el GIF
-      fill(120);
-      textAlign(CENTER, CENTER);
-      textSize(16);
-      text("Coloca el GIF de la función en la carpeta data", panelX + panelW/2, panelY + cMargin + imgMaxH/2);
-    }
+    float iw = gifActual.width- 250;
+    float ih = gifActual.height - 280;
+    float s = min((float)imgMaxW/iw, (float)imgMaxH/ih);
+    int dw = int(iw * s);
+    int dh = int(ih * s);
+    int dx = imgAreaX + (imgMaxW - dw + 305)/2;
+    int dy = imgAreaY + (imgMaxH - dh + 280)/2;
+    image(gifActual, dx, dy, dw, dh);
 
-    // Fórmula de Taylor debajo del GIF
-    fill(0);
-    textAlign(CENTER, CENTER);
+    // Fórmula de Taylor
+    fill(colorPrincipal9);
     textSize(14);
-    int formulaY = imgAreaY + imgMaxH + 40;
+    textAlign(CENTER, CENTER);
+    text("Fórmula de Taylor:", panelX + panelW/2, imgAreaY + imgMaxH + 30);
+
+    fill(200);
+    textSize(16);
     String formula = "";
     switch(taylorFuncion) {
     case 1:
-      formula = "sin(x) ≈ x - x³/3! + x⁵/5! - x⁷/7! + ...";
+      formula = "sin(x) ≈ x - x³/3! + x⁵/5! - ...";
       break;
     case 2:
-      formula = "cos(x) ≈ 1 - x²/2! + x⁴/4! - x⁶/6! + ...";
+      formula = "cos(x) ≈ 1 - x²/2! + x⁴/4! - ...";
       break;
     case 3:
       formula = "tan(x) = sin(x) / cos(x)";
@@ -1757,7 +2274,19 @@ void draw() {
       formula = "cot(x) = cos(x) / sin(x)";
       break;
     }
-    text(formula, panelX + panelW/2, formulaY);
+    text(formula, panelX + panelW/2, imgAreaY + imgMaxH + 60);
+
+    // Nota informativa
+    fill(100);
+    textSize(12);
+    text("Mayor N = Mayor precisión", panelX + panelW/2, imgAreaY + imgMaxH + 95);
+
+    // Instrucciones en la parte inferior
+    textAlign(CENTER, CENTER);
+    fill(120);
+    textSize(14);
+    text("Selecciona una función  •  Ingresa ángulo y términos  •  Usa '-' para ángulos negativos", width/2, height - 35);
+
     textAlign(CENTER, CENTER);
     break;
 
@@ -1778,57 +2307,6 @@ void draw() {
     textSize(20);
     textAlign(LEFT, BASELINE);
     text("> SELECCIONA UN PROCESO", width/2-300, height/2-280);
-
-    // Configuración de botones
-    textAlign(CENTER, CENTER);
-    int procBtnW = 320;
-    int procBtnH = 80;
-    int espaciadoH = 220;
-
-    // Botón 1: Multiplicación Rusa (izquierda)
-    int procBtn1X = width/2 - espaciadoH;
-    int procBtn1Y = height/2 - 30;
-
-    fill(0, 30, 80);
-    rect(procBtn1X, procBtn1Y, procBtnW, procBtnH, 15);
-    stroke(0, 100, 255);
-    strokeWeight(2);
-    noFill();
-    rect(procBtn1X, procBtn1Y, procBtnW, procBtnH, 15);
-    noStroke();
-    fill(0, 100, 255);
-    textSize(22);
-    text("MULTIPLICACIÓN\nRUSA", procBtn1X, procBtn1Y);
-
-    // Botón 2: Funciones Trigonométricas (derecha)
-    int procBtn2X = width/2 + espaciadoH;
-    int procBtn2Y = height/2 - 30;
-
-    fill(0, 30, 80);
-    rect(procBtn2X, procBtn2Y, procBtnW, procBtnH, 15);
-    stroke(0, 100, 255);
-    strokeWeight(2);
-    noFill();
-    rect(procBtn2X, procBtn2Y, procBtnW, procBtnH, 15);
-    noStroke();
-    fill(0, 100, 255);
-    textSize(22);
-    text("FUNCIONES\nTRIGONOMÉTRICAS", procBtn2X, procBtn2Y);
-
-    // Botón 3: Clave de un Número (centro abajo)
-    int procBtn3X = width/2;
-    int procBtn3Y = height/2 + 90;
-
-    fill(0, 30, 80);
-    rect(procBtn3X, procBtn3Y, procBtnW, procBtnH, 15);
-    stroke(0, 100, 255);
-    strokeWeight(2);
-    noFill();
-    rect(procBtn3X, procBtn3Y, procBtnW, procBtnH, 15);
-    noStroke();
-    fill(0, 100, 255);
-    textSize(22);
-    text("CLAVE DE UN\nNÚMERO", procBtn3X, procBtn3Y);
 
     rectMode(CORNER);
     break;
@@ -1881,7 +2359,7 @@ void draw() {
     if (turno == 1 && !juegoTerminado) {
       text("◄ TU TURNO", 20, 170);
     }
-    
+
     textAlign(RIGHT, TOP);
     fill(255, 150, 100);
     text("JUGADOR 2 [J2]", width - 20, 150);
@@ -1989,7 +2467,7 @@ void draw() {
 
       // Color del pétalo según si hay ficha o no, y si está seleccionado
       boolean estaSeleccionado = (sel1 == pos || sel2 == pos);
-      
+
       // Obtener quién quitó este pétalo
       int quienQuito = 0;
       switch(pos) {
@@ -2021,7 +2499,7 @@ void draw() {
         quienQuito = quito9;
         break;
       }
-      
+
       // Obtener el orden en que se quitó este pétalo
       int ordenPetalo = 0;
       switch(pos) {
@@ -2053,7 +2531,7 @@ void draw() {
         ordenPetalo = orden9;
         break;
       }
-      
+
       if (valor == 1) {
         if (estaSeleccionado) {
           // pétalo seleccionado: color según jugador
@@ -2080,7 +2558,7 @@ void draw() {
       }
       stroke(0, 0, 0);
       ellipse(petalX, petalY, radioPetalo, radioPetalo);
-      
+
       // Mostrar número de orden si el pétalo fue quitado
       if (ordenPetalo > 0) {
         if (quienQuito == 1) {
@@ -2128,7 +2606,7 @@ void draw() {
     }
     break;
   }
-  
+
   // Mostrar versión en la esquina inferior derecha
   if (coloresAzules) {
     fill(0, 100, 255, 150);
@@ -2139,6 +2617,13 @@ void draw() {
   textAlign(RIGHT, BOTTOM);
   text("Beta 1.0", width - 20, height - 10);
   textAlign(CENTER, CENTER);
+
+  // Cursor mano sobre botones
+  if (cp5.isMouseOver()) {
+    cursor(HAND);
+  } else {
+    cursor(ARROW);
+  }
 }
 
 //=====================================================================
@@ -2149,38 +2634,99 @@ void controlEvent(ControlEvent e) {
     boolean esMusica = false, esVolver = false, esMiscelaniaVirus = false, esVirus = false, esFama = false;
     boolean esMargarita = false, esExtras = false, esHexConversor = false, esOperaciones = false, esProcesosMat = false;
     boolean esIniciar = false, esParar = false, esSalir = false;
+    boolean esMultRusa = false, esFuncTrig = false, esClaveNum = false;
+    boolean esSIN = false, esCOS = false, esTAN = false, esSEC = false, esCSC = false, esCOT = false;
+    boolean esCalcRusa = false, esLimpRusa = false, esCalcClave = false, esLimpClave = false, esCalcTrig = false, esLimpTrig = false;
 
     if (e.getController() == cp5.getController("btnMusica")) {
-      esMusica = true;}
+      esMusica = true;
+    }
     if (e.getController() == cp5.getController("btnVolver")) {
-      esVolver = true;}
+      esVolver = true;
+    }
     if (e.getController() == cp5.getController("btnMiscelaniaVirus")) {
-      esMiscelaniaVirus = true;}
+      esMiscelaniaVirus = true;
+    }
     if (e.getController() == cp5.getController("btnVirus")) {
-      esVirus = true;}
+      esVirus = true;
+    }
     if (e.getController() == cp5.getController("btnFama")) {
-      esFama = true;}
+      esFama = true;
+    }
     if (e.getController() == cp5.getController("btnMargarita")) {
-      esMargarita = true;}
+      esMargarita = true;
+    }
     if (e.getController() == cp5.getController("btnExtras")) {
-      esExtras = true;}
+      esExtras = true;
+    }
     if (e.getController() == cp5.getController("btnHexConversor")) {
-      esHexConversor = true;}
+      esHexConversor = true;
+    }
     if (e.getController() == cp5.getController("btnOperaciones")) {
-      esOperaciones = true;}
+      esOperaciones = true;
+    }
     if (e.getController() == cp5.getController("btnProcesosMat")) {
-      esProcesosMat = true;}
+      esProcesosMat = true;
+    }
     if (e.getController() == cp5.getController("btnIniciar")) {
-      esIniciar = true;}
+      esIniciar = true;
+    }
     if (e.getController() == cp5.getController("btnParar")) {
-      esParar = true;}
+      esParar = true;
+    }
     if (e.getController() == cp5.getController("btnSalir")) {
-      esSalir = true;}
+      esSalir = true;
+    }
+    if (e.getController() == cp5.getController("btnMultRusa")) {
+      esMultRusa = true;
+    }
+    if (e.getController() == cp5.getController("btnFuncTrig")) {
+      esFuncTrig = true;
+    }
+    if (e.getController() == cp5.getController("btnClaveNum")) {
+      esClaveNum = true;
+    }
+    if (e.getController() == cp5.getController("btnSIN")) {
+      esSIN = true;
+    }
+    if (e.getController() == cp5.getController("btnCOS")) {
+      esCOS = true;
+    }
+    if (e.getController() == cp5.getController("btnTAN")) {
+      esTAN = true;
+    }
+    if (e.getController() == cp5.getController("btnSEC")) {
+      esSEC = true;
+    }
+    if (e.getController() == cp5.getController("btnCSC")) {
+      esCSC = true;
+    }
+    if (e.getController() == cp5.getController("btnCOT")) {
+      esCOT = true;
+    }
+    if (e.getController() == cp5.getController("btnCalcRusa")) {
+      esCalcRusa = true;
+    }
+    if (e.getController() == cp5.getController("btnLimpRusa")) {
+      esLimpRusa = true;
+    }
+    if (e.getController() == cp5.getController("btnCalcClave")) {
+      esCalcClave = true;
+    }
+    if (e.getController() == cp5.getController("btnLimpClave")) {
+      esLimpClave = true;
+    }
+    if (e.getController() == cp5.getController("btnCalcTrig")) {
+      esCalcTrig = true;
+    }
+    if (e.getController() == cp5.getController("btnLimpTrig")) {
+      esLimpTrig = true;
+    }
 
     if (esSalir) {
       out.playNote(0, 0.3, 200);
       exit();
-  }
+    }
     if (esMusica) {
       out.playNote(0, 0.1, 550);
       if (musicaActiva) {
@@ -2282,6 +2828,375 @@ void controlEvent(ControlEvent e) {
       out.playNote(0, 0.15, 480);
       pantalla = 10;
       coloresAzules = true;
+    }
+
+    if (esMultRusa) {
+      out.playNote(0, 0.18, 600);
+      pantalla = 7;
+      coloresAzules = true;
+      rusaEscribiendoM = false;
+      rusaEscribiendoN = false;
+      rusaTieneM = false;
+      rusaTieneN = false;
+      rusaM = 0;
+      rusaN = 0;
+      rusaProceso = "";
+    }
+
+    if (esFuncTrig) {
+      out.playNote(0, 0.18, 700);
+      pantalla = 9;
+      if (!gifsTrigoLoaded) {
+        gifSIN = new Gif(this, "gif/seno.gif");
+        gifSIN.loop();
+        gifCOS = new Gif(this, "gif/coseno.gif");
+        gifCOS.loop();
+        gifTAN = new Gif(this, "gif/tangente.gif");
+        gifTAN.loop();
+        gifSEC = new Gif(this, "gif/secante.gif");
+        gifSEC.loop();
+        gifCSC = new Gif(this, "gif/cosecante.gif");
+        gifCSC.loop();
+        gifCOT = new Gif(this, "gif/cotangente.gif");
+        gifCOT.loop();
+        gifsTrigoLoaded = true;
+      }
+      coloresAzules = true;
+      taylorFuncion = 1;
+      // Marcar SIN como seleccionado por defecto
+      cp5.getController("btnSIN").setColorBackground(color(0, 100, 255));
+      cp5.getController("btnCOS").setColorBackground(color(0));
+      cp5.getController("btnTAN").setColorBackground(color(0));
+      cp5.getController("btnSEC").setColorBackground(color(0));
+      cp5.getController("btnCSC").setColorBackground(color(0));
+      cp5.getController("btnCOT").setColorBackground(color(0));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+
+    if (esClaveNum) {
+      out.playNote(0, 0.18, 650);
+      pantalla = 8;
+      coloresAzules = true;
+      claveEscribiendo = false;
+      claveSignoNeg = false;
+      claveTieneValor = false;
+      claveValorAbs = 0;
+      claveProceso = "";
+    }
+
+    // Botones de funciones trigonométricas
+    if (esSIN) {
+      taylorFuncion = 1;
+      out.playNote(0, 0.1, 500);
+      cp5.getController("btnSIN").setColorBackground(color(0, 100, 255));
+      cp5.getController("btnCOS").setColorBackground(color(0));
+      cp5.getController("btnTAN").setColorBackground(color(0));
+      cp5.getController("btnSEC").setColorBackground(color(0));
+      cp5.getController("btnCSC").setColorBackground(color(0));
+      cp5.getController("btnCOT").setColorBackground(color(0));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+    if (esCOS) {
+      taylorFuncion = 2;
+      out.playNote(0, 0.1, 520);
+      cp5.getController("btnSIN").setColorBackground(color(0));
+      cp5.getController("btnCOS").setColorBackground(color(0, 100, 255));
+      cp5.getController("btnTAN").setColorBackground(color(0));
+      cp5.getController("btnSEC").setColorBackground(color(0));
+      cp5.getController("btnCSC").setColorBackground(color(0));
+      cp5.getController("btnCOT").setColorBackground(color(0));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+    if (esTAN) {
+      taylorFuncion = 3;
+      out.playNote(0, 0.1, 540);
+      cp5.getController("btnSIN").setColorBackground(color(0));
+      cp5.getController("btnCOS").setColorBackground(color(0));
+      cp5.getController("btnTAN").setColorBackground(color(0, 100, 255));
+      cp5.getController("btnSEC").setColorBackground(color(0));
+      cp5.getController("btnCSC").setColorBackground(color(0));
+      cp5.getController("btnCOT").setColorBackground(color(0));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+    if (esSEC) {
+      taylorFuncion = 4;
+      out.playNote(0, 0.1, 560);
+      cp5.getController("btnSIN").setColorBackground(color(0));
+      cp5.getController("btnCOS").setColorBackground(color(0));
+      cp5.getController("btnTAN").setColorBackground(color(0));
+      cp5.getController("btnSEC").setColorBackground(color(0, 100, 255));
+      cp5.getController("btnCSC").setColorBackground(color(0));
+      cp5.getController("btnCOT").setColorBackground(color(0));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+    if (esCSC) {
+      taylorFuncion = 5;
+      out.playNote(0, 0.1, 580);
+      cp5.getController("btnSIN").setColorBackground(color(0));
+      cp5.getController("btnCOS").setColorBackground(color(0));
+      cp5.getController("btnTAN").setColorBackground(color(0));
+      cp5.getController("btnSEC").setColorBackground(color(0));
+      cp5.getController("btnCSC").setColorBackground(color(0, 100, 255));
+      cp5.getController("btnCOT").setColorBackground(color(0));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+    if (esCOT) {
+      taylorFuncion = 6;
+      out.playNote(0, 0.1, 600);
+      cp5.getController("btnSIN").setColorBackground(color(0));
+      cp5.getController("btnCOS").setColorBackground(color(0));
+      cp5.getController("btnTAN").setColorBackground(color(0));
+      cp5.getController("btnSEC").setColorBackground(color(0));
+      cp5.getController("btnCSC").setColorBackground(color(0));
+      cp5.getController("btnCOT").setColorBackground(color(0, 100, 255));
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+    }
+
+    // Botón Calcular Multiplicación Rusa
+    if (esCalcRusa) {
+      if (!rusaTieneM || !rusaTieneN) {
+        rusaProceso = "Ingrese ambos números.";
+      } else {
+        long mAux = rusaM;
+        long nAux = rusaN;
+        long resultado = 0;
+        rusaProceso = "Multiplicación Rusa:\n\n";
+        while (mAux > 0) {
+          if (mAux % 2 != 0) {
+            rusaProceso = rusaProceso + mAux + " × " + nAux + " (impar, sumar)\n";
+            resultado = resultado + nAux;
+          } else {
+            rusaProceso = rusaProceso + mAux + " × " + nAux + "\n";
+          }
+          mAux = mAux / 2;
+          nAux = nAux * 2;
+        }
+        rusaProceso = rusaProceso + "\nResultado = " + resultado;
+      }
+      out.playNote(0, 0.18, 600);
+    }
+
+    // Botón Limpiar Multiplicación Rusa
+    if (esLimpRusa) {
+      rusaEscribiendoM = false;
+      rusaEscribiendoN = false;
+      rusaTieneM = false;
+      rusaTieneN = false;
+      rusaM = 0;
+      rusaN = 0;
+      rusaProceso = "";
+      out.playNote(0, 0.18, 500);
+    }
+
+    // Botón Calcular Clave de un Número
+    if (esCalcClave) {
+      if (!claveTieneValor && !claveSignoNeg) {
+        claveProceso = "Ingrese un número.";
+      } else {
+        long valor;
+        if (claveSignoNeg) valor = -claveValorAbs;
+        else valor = claveValorAbs;
+        claveProceso = "Clave de un Número:\n\n";
+        claveProceso = claveProceso + "Número: " + valor + "\n\n";
+        if (valor < 0) {
+          claveProceso = claveProceso + "Es negativo, clave = -1";
+        } else {
+          long n = valor;
+          long factor = 2;
+          long suma = 0;
+          while (n > 0) {
+            long dig = n % 10;
+            claveProceso = claveProceso + dig + " × " + factor + " = " + (dig * factor) + "\n";
+            suma = suma + dig * factor;
+            factor = factor + 1;
+            n = n / 10;
+          }
+          claveProceso = claveProceso + "\nSuma = " + suma + "\n";
+          claveProceso = claveProceso + "Clave = " + (suma % 10);
+        }
+      }
+      out.playNote(0, 0.18, 600);
+    }
+
+    // Botón Limpiar Clave de un Número
+    if (esLimpClave) {
+      claveEscribiendo = false;
+      claveSignoNeg = false;
+      claveTieneValor = false;
+      claveValorAbs = 0;
+      claveProceso = "";
+      out.playNote(0, 0.18, 500);
+    }
+
+    // Botón Calcular Funciones Trigonométricas
+    if (esCalcTrig) {
+      if (!tAngTieneValor && !tAngSignoNeg) {
+        tResultado = "Ingrese el ángulo.";
+      } else {
+        if (!tNTieneValor || tN <= 0) {
+          tResultado = "Ingrese N > 0.";
+        } else {
+          double grados;
+          if (tAngSignoNeg) grados = -1.0 * tAnguloAbs;
+          else grados = tAnguloAbs * 1.0;
+          double x = grados * PI / 180.0;
+
+          // Calcular sin y cos con Taylor
+          double seno = 0.0;
+          double coseno = 0.0;
+          int nS = 0;
+          while (nS < tN) {
+            int expS = 2 * nS + 1;
+            double potS = 1.0;
+            int k = 1;
+            while (k <= expS) {
+              potS = potS * x;
+              k = k + 1;
+            }
+            double factS = 1.0;
+            k = 1;
+            while (k <= expS) {
+              factS = factS * k;
+              k = k + 1;
+            }
+            if (nS % 2 == 0) seno = seno + potS / factS;
+            else seno = seno - potS / factS;
+            nS = nS + 1;
+          }
+
+          int nC = 0;
+          while (nC < tN) {
+            int expC = 2 * nC;
+            double potC = 1.0;
+            int k = 1;
+            while (k <= expC) {
+              potC = potC * x;
+              k = k + 1;
+            }
+            double factC = 1.0;
+            k = 1;
+            while (k <= expC) {
+              factC = factC * k;
+              k = k + 1;
+            }
+            if (nC % 2 == 0) coseno = coseno + potC / factC;
+            else coseno = coseno - potC / factC;
+            nC = nC + 1;
+          }
+
+          tResultado = "";
+          if (taylorFuncion == 1) {
+            tResultado = "sin(" + grados + "°) ≈ " + seno;
+          } else {
+            if (taylorFuncion == 2) {
+              tResultado = "cos(" + grados + "°) ≈ " + coseno;
+            } else {
+              if (taylorFuncion == 3) {
+                double cosAbs = coseno;
+                if (cosAbs < 0) cosAbs = -cosAbs;
+                if (cosAbs < tEPS) {
+                  tResultado = "tan indefinida (cos ≈ 0)";
+                } else {
+                  tResultado = "tan(" + grados + "°) ≈ " + (seno / coseno);
+                }
+              } else {
+                if (taylorFuncion == 4) {
+                  double cosAbs = coseno;
+                  if (cosAbs < 0) cosAbs = -cosAbs;
+                  if (cosAbs < tEPS) {
+                    tResultado = "sec indefinida (cos ≈ 0)";
+                  } else {
+                    tResultado = "sec(" + grados + "°) ≈ " + (1.0 / coseno);
+                  }
+                } else {
+                  if (taylorFuncion == 5) {
+                    double sinAbs = seno;
+                    if (sinAbs < 0) sinAbs = -sinAbs;
+                    if (sinAbs < tEPS) {
+                      tResultado = "csc indefinida (sin ≈ 0)";
+                    } else {
+                      tResultado = "csc(" + grados + "°) ≈ " + (1.0 / seno);
+                    }
+                  } else {
+                    if (taylorFuncion == 6) {
+                      double sinAbs = seno;
+                      if (sinAbs < 0) sinAbs = -sinAbs;
+                      if (sinAbs < tEPS) {
+                        tResultado = "cot indefinida (sin ≈ 0)";
+                      } else {
+                        tResultado = "cot(" + grados + "°) ≈ " + (coseno / seno);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      out.playNote(0, 0.18, 600);
+    }
+
+    // Botón Limpiar Funciones Trigonométricas
+    if (esLimpTrig) {
+      tAngEscribiendo = false;
+      tNEscribiendo = false;
+      tAngSignoNeg = false;
+      tAngTieneValor = false;
+      tAnguloAbs = 0;
+      tNTieneValor = false;
+      tN = 0;
+      tResultado = "";
+      out.playNote(0, 0.18, 500);
     }
 
     if (esIniciar) {
@@ -2528,312 +3443,46 @@ void mousePressed() {
 
   // Clicks en Multiplicación Rusa (pantalla 7)
   if (pantalla == 7) {
-    // Campo multiplicador
-    if (mouseX > 150 && mouseX < 470 && mouseY > 170 && mouseY < 220) {
+    // Calcular posiciones de campos (igual que en draw)
+    int campoAncho7 = 220;
+    int espacioX7 = 60;
+    int totalAncho7 = campoAncho7 * 2 + espacioX7;
+    int campoPosX7 = width/2 - totalAncho7/2;
+
+    // Campo multiplicador M
+    if (mouseX > campoPosX7 && mouseX < campoPosX7 + campoAncho7 && mouseY > 195 && mouseY < 250) {
       rusaEscribiendoM = true;
       rusaEscribiendoN = false;
     }
-    // Campo multiplicando
-    if (mouseX > 550 && mouseX < 870 && mouseY > 170 && mouseY < 220) {
+    // Campo multiplicando N
+    if (mouseX > campoPosX7 + campoAncho7 + espacioX7 && mouseX < campoPosX7 + campoAncho7 * 2 + espacioX7 && mouseY > 195 && mouseY < 250) {
       rusaEscribiendoM = false;
       rusaEscribiendoN = true;
-    }
-    // Botón Calcular
-    if (mouseX > width/2 - 180 && mouseX < width/2 &&
-      mouseY > 240 && mouseY < 290) {
-      if (!rusaTieneM || !rusaTieneN) {
-        rusaProceso = "Ingrese ambos números.";
-      } else {
-        long mAux = rusaM;
-        long nAux = rusaN;
-        long resultado = 0;
-        rusaProceso = "Multiplicación Rusa:\n\n";
-        while (mAux > 0) {
-          if (mAux % 2 != 0) {
-            rusaProceso = rusaProceso + mAux + " × " + nAux + " (impar, sumar)\n";
-            resultado = resultado + nAux;
-          } else {
-            rusaProceso = rusaProceso + mAux + " × " + nAux + "\n";
-          }
-          mAux = mAux / 2;
-          nAux = nAux * 2;
-        }
-        rusaProceso = rusaProceso + "\nResultado = " + resultado;
-      }
-      out.playNote(0, 0.18, 600);
-    }
-    // Botón Limpiar
-    if (mouseX > width/2 + 10 && mouseX < width/2 + 190 &&
-      mouseY > 240 && mouseY < 290) {
-      rusaEscribiendoM = false;
-      rusaEscribiendoN = false;
-      rusaTieneM = false;
-      rusaTieneN = false;
-      rusaM = 0;
-      rusaN = 0;
-      rusaProceso = "";
-      out.playNote(0, 0.18, 500);
     }
   }
 
   // Clicks en Clave de un Número (pantalla 8)
   if (pantalla == 8) {
-    // Campo número
-    if (mouseX > 250 && mouseX < 750 && mouseY > 170 && mouseY < 220) {
+    // Campo número (centrado)
+    int claveAncho8 = 320;
+    int clavePosX8 = width/2 - claveAncho8/2 + 50;
+    if (mouseX > clavePosX8 && mouseX < clavePosX8 + claveAncho8 && mouseY > 195 && mouseY < 250) {
       claveEscribiendo = true;
-    }
-    // Botón Calcular
-    if (mouseX > width/2 - 180 && mouseX < width/2 &&
-      mouseY > 240 && mouseY < 290) {
-      if (!claveTieneValor && !claveSignoNeg) {
-        claveProceso = "Ingrese un número.";
-      } else {
-        long valor;
-        if (claveSignoNeg) valor = -claveValorAbs;
-        else valor = claveValorAbs;
-        claveProceso = "Clave de un Número:\n\n";
-        claveProceso = claveProceso + "Número: " + valor + "\n\n";
-        if (valor < 0) {
-          claveProceso = claveProceso + "Es negativo, clave = -1";
-        } else {
-          long n = valor;
-          long factor = 2;
-          long suma = 0;
-          while (n > 0) {
-            long dig = n % 10;
-            claveProceso = claveProceso + dig + " × " + factor + " = " + (dig * factor) + "\n";
-            suma = suma + dig * factor;
-            factor = factor + 1;
-            n = n / 10;
-          }
-          claveProceso = claveProceso + "\nSuma = " + suma + "\n";
-          claveProceso = claveProceso + "Clave = " + (suma % 10);
-        }
-      }
-      out.playNote(0, 0.18, 600);
-    }
-    // Botón Limpiar
-    if (mouseX > width/2 + 10 && mouseX < width/2 + 190 &&
-      mouseY > 240 && mouseY < 290) {
-      claveEscribiendo = false;
-      claveSignoNeg = false;
-      claveTieneValor = false;
-      claveValorAbs = 0;
-      claveProceso = "";
-      out.playNote(0, 0.18, 500);
     }
   }
 
   // Clicks en Funciones Trigonométricas (pantalla 9)
   if (pantalla == 9) {
-    // Selector de funciones (6 botones)
-    int fX = 100;
-    int fY = 180;
-    int fW = 120;
-    int fH = 50;
-    int f = 0;
-    while (f < 6) {
-      int fx = fX + (f % 3) * 140;
-      int fy = fY + (f / 3) * 70;
-      if (mouseX > fx && mouseX < fx + fW &&
-        mouseY > fy && mouseY < fy + fH) {
-        taylorFuncion = f + 1;
-        out.playNote(0, 0.1, 500);
-      }
-      f = f + 1;
-    }
-    // Campo ángulo
-    if (mouseX > 100 && mouseX < 550 && mouseY > 350 && mouseY < 410) {
+    int campoClickX = width/2 - 440;
+    // Campo ángulo (nueva posición centrada)
+    if (mouseX > campoClickX && mouseX < campoClickX + 420 && mouseY > 330 && mouseY < 380) {
       tAngEscribiendo = true;
       tNEscribiendo = false;
     }
-    // Campo N
-    if (mouseX > 100 && mouseX < 550 && mouseY > 440 && mouseY < 500) {
+    // Campo N (nueva posición centrada)
+    if (mouseX > campoClickX && mouseX < campoClickX + 420 && mouseY > 415 && mouseY < 465) {
       tAngEscribiendo = false;
       tNEscribiendo = true;
-    }
-    // Botón Calcular
-    if (mouseX > 100 && mouseX < 300 &&
-      mouseY > 620 && mouseY < 680) {
-      if (!tAngTieneValor && !tAngSignoNeg) {
-        tResultado = "Ingrese el ángulo.";
-      } else if (!tNTieneValor || tN <= 0) {
-        tResultado = "Ingrese N > 0.";
-      } else {
-        double grados;
-        if (tAngSignoNeg) grados = -1.0 * tAnguloAbs;
-        else grados = tAnguloAbs * 1.0;
-        double x = grados * tPi / 180.0;
-
-        // Calcular sin y cos con Taylor
-        double seno = 0.0;
-        double coseno = 0.0;
-        int nS = 0;
-        while (nS < tN) {
-          int expS = 2 * nS + 1;
-          double potS = 1.0;
-          int k = 1;
-          while (k <= expS) {
-            potS = potS * x;
-            k = k + 1;
-          }
-          double factS = 1.0;
-          k = 1;
-          while (k <= expS) {
-            factS = factS * k;
-            k = k + 1;
-          }
-          if (nS % 2 == 0) seno = seno + potS / factS;
-          else seno = seno - potS / factS;
-          nS = nS + 1;
-        }
-
-        int nC = 0;
-        while (nC < tN) {
-          int expC = 2 * nC;
-          double potC = 1.0;
-          int k = 1;
-          while (k <= expC) {
-            potC = potC * x;
-            k = k + 1;
-          }
-          double factC = 1.0;
-          k = 1;
-          while (k <= expC) {
-            factC = factC * k;
-            k = k + 1;
-          }
-          if (nC % 2 == 0) coseno = coseno + potC / factC;
-          else coseno = coseno - potC / factC;
-          nC = nC + 1;
-        }
-
-        tResultado = "";
-        if (taylorFuncion == 1) {
-          tResultado = "sin(" + grados + "°) ≈ " + seno;
-        } else if (taylorFuncion == 2) {
-          tResultado = "cos(" + grados + "°) ≈ " + coseno;
-        } else if (taylorFuncion == 3) {
-          double cosAbs = coseno;
-          if (cosAbs < 0) cosAbs = -cosAbs;
-          if (cosAbs < tEPS) {
-            tResultado = "tan indefinida (cos ≈ 0)";
-          } else {
-            tResultado = "tan(" + grados + "°) ≈ " + (seno / coseno);
-          }
-        } else if (taylorFuncion == 4) {
-          double cosAbs = coseno;
-          if (cosAbs < 0) cosAbs = -cosAbs;
-          if (cosAbs < tEPS) {
-            tResultado = "sec indefinida (cos ≈ 0)";
-          } else {
-            tResultado = "sec(" + grados + "°) ≈ " + (1.0 / coseno);
-          }
-        } else if (taylorFuncion == 5) {
-          double sinAbs = seno;
-          if (sinAbs < 0) sinAbs = -sinAbs;
-          if (sinAbs < tEPS) {
-            tResultado = "csc indefinida (sin ≈ 0)";
-          } else {
-            tResultado = "csc(" + grados + "°) ≈ " + (1.0 / seno);
-          }
-        } else if (taylorFuncion == 6) {
-          double sinAbs = seno;
-          if (sinAbs < 0) sinAbs = -sinAbs;
-          if (sinAbs < tEPS) {
-            tResultado = "cot indefinida (sin ≈ 0)";
-          } else {
-            tResultado = "cot(" + grados + "°) ≈ " + (coseno / seno);
-          }
-        }
-      }
-      out.playNote(0, 0.18, 600);
-    }
-    // Botón Limpiar
-    if (mouseX > 320 && mouseX < 520 &&
-      mouseY > 620 && mouseY < 680) {
-      tAngEscribiendo = false;
-      tNEscribiendo = false;
-      tAngSignoNeg = false;
-      tAngTieneValor = false;
-      tAnguloAbs = 0;
-      tNTieneValor = false;
-      tN = 0;
-      tResultado = "";
-      out.playNote(0, 0.18, 500);
-    }
-  }
-
-  // Clicks en Menú Procesos Matemáticos (pantalla 10)
-  if (pantalla == 10) {
-    int procBtnW = 320;
-    int procBtnH = 80;
-    int espaciadoH = 220;
-
-    // Botón Multiplicación Rusa (izquierda arriba)
-    int procBtn1X = width/2 - espaciadoH;
-    int procBtn1Y = height/2 - 30;
-    if (mouseX > procBtn1X - procBtnW/2 && mouseX < procBtn1X + procBtnW/2 &&
-      mouseY > procBtn1Y - procBtnH/2 && mouseY < procBtn1Y + procBtnH/2) {
-      pantalla = 7;
-      coloresAzules = true;
-      rusaEscribiendoM = false;
-      rusaEscribiendoN = false;
-      rusaTieneM = false;
-      rusaTieneN = false;
-      rusaM = 0;
-      rusaN = 0;
-      rusaProceso = "";
-      out.playNote(0, 0.18, 600);
-    }
-
-    // Botón Funciones Trigonométricas (derecha arriba)
-    int procBtn2X = width/2 + espaciadoH;
-    int procBtn2Y = height/2 - 30;
-    if (mouseX > procBtn2X - procBtnW/2 && mouseX < procBtn2X + procBtnW/2 &&
-      mouseY > procBtn2Y - procBtnH/2 && mouseY < procBtn2Y + procBtnH/2) {
-      pantalla = 9;
-      if (!gifsTrigoLoaded) {
-        gifSIN = new Gif(this, "gif/seno.gif");
-        gifSIN.loop();
-        gifCOS = new Gif(this, "gif/coseno.gif");
-        gifCOS.loop();
-        gifTAN = new Gif(this, "gif/tangente.gif");
-        gifTAN.loop();
-        gifSEC = new Gif(this, "gif/secante.gif");
-        gifSEC.loop();
-        gifCSC = new Gif(this, "gif/cosecante.gif");
-        gifCSC.loop();
-        gifCOT = new Gif(this, "gif/cotangente.gif");
-        gifCOT.loop();
-        gifsTrigoLoaded = true;
-      }
-      coloresAzules = true;
-      taylorFuncion = 1;
-      tAngEscribiendo = false;
-      tNEscribiendo = false;
-      tAngSignoNeg = false;
-      tAngTieneValor = false;
-      tAnguloAbs = 0;
-      tNTieneValor = false;
-      tN = 0;
-      tResultado = "";
-      out.playNote(0, 0.18, 700);
-    }
-
-    // Botón Clave de un Número (centro abajo)
-    int procBtn3X = width/2;
-    int procBtn3Y = height/2 + 90;
-    if (mouseX > procBtn3X - procBtnW/2 && mouseX < procBtn3X + procBtnW/2 &&
-      mouseY > procBtn3Y - procBtnH/2 && mouseY < procBtn3Y + procBtnH/2) {
-      pantalla = 8;
-      coloresAzules = true;
-      claveEscribiendo = false;
-      claveSignoNeg = false;
-      claveTieneValor = false;
-      claveValorAbs = 0;
-      claveProceso = "";
-      out.playNote(0, 0.18, 650);
     }
   }
 
