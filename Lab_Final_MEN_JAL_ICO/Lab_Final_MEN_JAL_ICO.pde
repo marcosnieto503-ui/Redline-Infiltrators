@@ -54,13 +54,13 @@ int tN = 0;
 String tResultado = "";
 double tPi = 3.141592653589793;
 double tEPS = 0.00000001;
-// GIFs animados para funciones trigonométricas
 Gif gifSIN;
 Gif gifCOS;
 Gif gifTAN;
 Gif gifSEC;
 Gif gifCSC;
 Gif gifCOT;
+boolean gifsTrigoLoaded = false;
 
 // JUEGO VIRUS
 boolean juegoVirus = false;
@@ -150,19 +150,7 @@ void setup() {
   // Cargar logo
   logoImagen = loadImage("logo.png");
 
-  // Cargar GIFs animados y ponerlos en loop
-  gifSIN = new Gif(this, "gif/seno.gif");
-  gifSIN.loop();
-  gifCOS = new Gif(this, "gif/coseno.gif");
-  gifCOS.loop();
-  gifTAN = new Gif(this, "gif/tangente.gif");
-  gifTAN.loop();
-  gifSEC = new Gif(this, "gif/secante.gif");
-  gifSEC.loop();
-  gifCSC = new Gif(this, "gif/cosecante.gif");
-  gifCSC.loop();
-  gifCOT = new Gif(this, "gif/cotangente.gif");
-  gifCOT.loop();
+  // Los GIFs se cargan cuando se entra a pantalla 9
 
   // Fuentes
   fuente = createFont("Courier New", 28);
@@ -2510,6 +2498,21 @@ void mousePressed() {
     if (mouseX > width/2 + 50 && mouseX < width/2 + 350 &&
       mouseY > height/2 - 100 && mouseY < height/2 - 10) {
       pantalla = 9;
+      if (!gifsTrigoLoaded) {
+        gifSIN = new Gif(this, "gif/seno.gif");
+        gifSIN.loop();
+        gifCOS = new Gif(this, "gif/coseno.gif");
+        gifCOS.loop();
+        gifTAN = new Gif(this, "gif/tangente.gif");
+        gifTAN.loop();
+        gifSEC = new Gif(this, "gif/secante.gif");
+        gifSEC.loop();
+        gifCSC = new Gif(this, "gif/cosecante.gif");
+        gifCSC.loop();
+        gifCOT = new Gif(this, "gif/cotangente.gif");
+        gifCOT.loop();
+        gifsTrigoLoaded = true;
+      }
       taylorFuncion = 1;
       tAngEscribiendo = false;
       tNEscribiendo = false;
@@ -2790,6 +2793,21 @@ void mousePressed() {
     if (mouseX > procBtn2X - procBtnW/2 && mouseX < procBtn2X + procBtnW/2 &&
       mouseY > procBtn2Y - procBtnH/2 && mouseY < procBtn2Y + procBtnH/2) {
       pantalla = 9;
+      if (!gifsTrigoLoaded) {
+        gifSIN = new Gif(this, "gif/seno.gif");
+        gifSIN.loop();
+        gifCOS = new Gif(this, "gif/coseno.gif");
+        gifCOS.loop();
+        gifTAN = new Gif(this, "gif/tangente.gif");
+        gifTAN.loop();
+        gifSEC = new Gif(this, "gif/secante.gif");
+        gifSEC.loop();
+        gifCSC = new Gif(this, "gif/cosecante.gif");
+        gifCSC.loop();
+        gifCOT = new Gif(this, "gif/cotangente.gif");
+        gifCOT.loop();
+        gifsTrigoLoaded = true;
+      }
       coloresAzules = true;
       taylorFuncion = 1;
       tAngEscribiendo = false;
