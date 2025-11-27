@@ -101,6 +101,29 @@ int p7 = 1;
 int p8 = 1;
 int p9 = 1;
 
+// Quién quitó cada pétalo (0 = nadie, 1 = jugador 1, 2 = jugador 2)
+int quito1 = 0;
+int quito2 = 0;
+int quito3 = 0;
+int quito4 = 0;
+int quito5 = 0;
+int quito6 = 0;
+int quito7 = 0;
+int quito8 = 0;
+int quito9 = 0;
+
+// Orden en que se quitó cada pétalo (0 = no quitado, 1-9 = orden)
+int orden1 = 0;
+int orden2 = 0;
+int orden3 = 0;
+int orden4 = 0;
+int orden5 = 0;
+int orden6 = 0;
+int orden7 = 0;
+int orden8 = 0;
+int orden9 = 0;
+int contadorOrden = 0;
+
 int turno = 1;          // 1 ó 2
 int fichasRestantes = 9;
 
@@ -341,6 +364,7 @@ void draw() {
   // ===== ACTUALIZAR VISIBILIDAD DE BOTONES CON SWITCH =====
   switch (pantalla) {
   case 0:  // Menú principal
+    cp5.getController("btnSalir").show();
     cp5.getController("btnVolver").hide();
     cp5.getController("btnMiscelaniaVirus").show();
     cp5.getController("btnVirus").hide();
@@ -355,6 +379,7 @@ void draw() {
     break;
 
   case 1:  // Menu Miscelania Virus
+    cp5.getController("btnSalir").show();
     cp5.getController("btnVolver").show();
     cp5.getController("btnMiscelaniaVirus").hide();
     cp5.getController("btnVirus").show();
@@ -369,6 +394,7 @@ void draw() {
     break;
 
   case 2:  // Juego Virus
+    cp5.getController("btnSalir").hide();
     cp5.getController("btnVolver").show();
     cp5.getController("btnMiscelaniaVirus").hide();
     cp5.getController("btnVirus").hide();
@@ -391,6 +417,7 @@ void draw() {
     break;
 
   case 3:  // Punto y Fama
+    cp5.getController("btnSalir").hide();
     cp5.getController("btnVolver").show();
     cp5.getController("btnMiscelaniaVirus").hide();
     cp5.getController("btnVirus").hide();
@@ -405,6 +432,7 @@ void draw() {
     break;
 
   case 4:  // Menu Extras
+    cp5.getController("btnSalir").show();
     cp5.getController("btnVolver").show();
     cp5.getController("btnMiscelaniaVirus").hide();
     cp5.getController("btnVirus").hide();
@@ -419,6 +447,7 @@ void draw() {
     break;
 
   case 5:  // Hex Conversor
+    cp5.getController("btnSalir").show();
     cp5.getController("btnVolver").show();
     cp5.getController("btnMiscelaniaVirus").hide();
     cp5.getController("btnVirus").hide();
@@ -437,7 +466,22 @@ void draw() {
   case 8:  // Clave Numero
   case 9:  // Funciones Trig
   case 10:  // Menu Procesos Matematicos
+    cp5.getController("btnSalir").show();
+    cp5.getController("btnVolver").show();
+    cp5.getController("btnMiscelaniaVirus").hide();
+    cp5.getController("btnVirus").hide();
+    cp5.getController("btnFama").hide();
+    cp5.getController("btnMargarita").hide();
+    cp5.getController("btnExtras").hide();
+    cp5.getController("btnProcesosMat").hide();
+    cp5.getController("btnHexConversor").hide();
+    cp5.getController("btnOperaciones").hide();
+    cp5.getController("btnIniciar").hide();
+    cp5.getController("btnParar").hide();
+    break;
+
   case 11:  // La Margarita
+    cp5.getController("btnSalir").hide();
     cp5.getController("btnVolver").show();
     cp5.getController("btnMiscelaniaVirus").hide();
     cp5.getController("btnVirus").hide();
@@ -1234,7 +1278,7 @@ void draw() {
     text("RESULTADO DEC", resultadoX + resultadoAncho/2, resultadoY + 15);
 
     textSize(50);
-    fill(0, 255, 200);
+    fill(0, 255, 70);
     text(hexDecimal, resultadoX + resultadoAncho/2, resultadoY + resultadoAlto/2 + 10);
 
     // Cuadro de proceso (abajo, a la derecha de la tabla, sin solapar)
@@ -1806,16 +1850,18 @@ void draw() {
     background(5, 25, 10);
 
     // Título / ganador
-    fill(0, 255, 120);
     textSize(28);
     if (!juegoTerminado) {
+      fill(0, 255, 120);
       text("SISTEMA DE ACCESO - LA MARGARITA", width/2, 40);
     } else {
       if (ganadorMargarita == 1) {
-        text("GANA EL JUGADOR 1", width/2, 40);
+        fill(100, 255, 150);
+        text("¡GANA EL JUGADOR 1!", width/2, 40);
       } else {
         if (ganadorMargarita == 2) {
-          text("GANA EL JUGADOR 2", width/2, 40);
+          fill(255, 150, 100);
+          text("¡GANA EL JUGADOR 2!", width/2, 40);
         }
       }
     }
@@ -1823,12 +1869,38 @@ void draw() {
     // Texto de turno o reinicio
     textSize(18);
     if (!juegoTerminado) {
-      text("Turno del jugador: " + turno, width/2, 70);
+      // Color según turno del jugador
+      if (turno == 1) {
+        fill(100, 255, 150);
+        text(">>> TURNO: JUGADOR 1 <<<", width/2, 70);
+      } else {
+        fill(255, 150, 100);
+        text(">>> TURNO: JUGADOR 2 <<<", width/2, 70);
+      }
+      fill(0, 255, 120);
       text("1) Haz clic en 1 o 2 pétalos", width/2, 95);
       text("2) Pulsa ENTER para confirmar", width/2, 120);
     } else {
+      fill(0, 255, 120);
       text("Pulsa ENTER para jugar de nuevo", width/2, 80);
     }
+
+    // Indicador de jugadores en las esquinas
+    textSize(16);
+    textAlign(LEFT, TOP);
+    fill(100, 255, 150);
+    text("[J1] JUGADOR 1", 20, 150);
+    if (turno == 1 && !juegoTerminado) {
+      text("◄ TU TURNO", 20, 170);
+    }
+    
+    textAlign(RIGHT, TOP);
+    fill(255, 150, 100);
+    text("JUGADOR 2 [J2]", width - 20, 150);
+    if (turno == 2 && !juegoTerminado) {
+      text("TU TURNO ►", width - 20, 170);
+    }
+    textAlign(CENTER, CENTER);
 
     // Centro de la flor: estilo "candado"
     stroke(0, 255, 160);
@@ -1927,21 +1999,119 @@ void draw() {
         break;
       }
 
-      // Color del pétalo según si hay ficha o no
+      // Color del pétalo según si hay ficha o no, y si está seleccionado
+      boolean estaSeleccionado = (sel1 == pos || sel2 == pos);
+      
+      // Obtener quién quitó este pétalo
+      int quienQuito = 0;
+      switch(pos) {
+      case 1:
+        quienQuito = quito1;
+        break;
+      case 2:
+        quienQuito = quito2;
+        break;
+      case 3:
+        quienQuito = quito3;
+        break;
+      case 4:
+        quienQuito = quito4;
+        break;
+      case 5:
+        quienQuito = quito5;
+        break;
+      case 6:
+        quienQuito = quito6;
+        break;
+      case 7:
+        quienQuito = quito7;
+        break;
+      case 8:
+        quienQuito = quito8;
+        break;
+      case 9:
+        quienQuito = quito9;
+        break;
+      }
+      
+      // Obtener el orden en que se quitó este pétalo
+      int ordenPetalo = 0;
+      switch(pos) {
+      case 1:
+        ordenPetalo = orden1;
+        break;
+      case 2:
+        ordenPetalo = orden2;
+        break;
+      case 3:
+        ordenPetalo = orden3;
+        break;
+      case 4:
+        ordenPetalo = orden4;
+        break;
+      case 5:
+        ordenPetalo = orden5;
+        break;
+      case 6:
+        ordenPetalo = orden6;
+        break;
+      case 7:
+        ordenPetalo = orden7;
+        break;
+      case 8:
+        ordenPetalo = orden8;
+        break;
+      case 9:
+        ordenPetalo = orden9;
+        break;
+      }
+      
       if (valor == 1) {
-        // pétalo con ficha: verde brillante
-        fill(0, 220, 100);
+        if (estaSeleccionado) {
+          // pétalo seleccionado: color según jugador
+          if (turno == 1) {
+            fill(100, 255, 150);
+          } else {
+            fill(255, 150, 100);
+          }
+        } else {
+          // pétalo con ficha: verde brillante
+          fill(0, 220, 100);
+        }
       } else {
-        // pétalo vacío: verde oscuro
-        fill(10, 50, 25);
+        // pétalo vacío: color según quién lo quitó
+        if (quienQuito == 1) {
+          fill(30, 80, 50);
+        } else {
+          if (quienQuito == 2) {
+            fill(80, 50, 30);
+          } else {
+            fill(10, 50, 25);
+          }
+        }
       }
       stroke(0, 0, 0);
       ellipse(petalX, petalY, radioPetalo, radioPetalo);
+      
+      // Mostrar número de orden si el pétalo fue quitado
+      if (ordenPetalo > 0) {
+        if (quienQuito == 1) {
+          fill(100, 255, 150);
+        } else {
+          fill(255, 150, 100);
+        }
+        textSize(32);
+        text(ordenPetalo, petalX, petalY);
+      }
 
-      // Resaltado si está seleccionado
-      if (sel1 == pos || sel2 == pos) {
+      // Resaltado si está seleccionado (color según jugador)
+      if (estaSeleccionado) {
         noFill();
-        stroke(0, 255, 0);
+        if (turno == 1) {
+          stroke(100, 255, 150);
+        } else {
+          stroke(255, 150, 100);
+        }
         strokeWeight(4);
         ellipse(petalX, petalY, radioPetalo + 14, radioPetalo + 14);
         strokeWeight(1);
@@ -1960,9 +2130,13 @@ void draw() {
 
     // Mensaje final de ACCESO CONCEDIDO
     if (juegoTerminado) {
-      fill(0, 255, 120);
-      textSize(22);
-      text("ACCESO CONCEDIDO AL JUGADOR " + ganadorMargarita, width/2, height - 80);
+      if (ganadorMargarita == 1) {
+        fill(100, 255, 150);
+        text("ACCESO CONCEDIDO AL JUGADOR 1", width/2, height - 80);
+      } else {
+        fill(255, 150, 100);
+        text("ACCESO CONCEDIDO AL JUGADOR 2", width/2, height - 80);
+      }
     }
     break;
   }
@@ -2016,9 +2190,11 @@ void controlEvent(ControlEvent e) {
       esSalir = true;}
 
     if (esSalir) {
+      out.playNote(0, 0.3, 200);
       exit();
   }
     if (esMusica) {
+      out.playNote(0, 0.1, 550);
       if (musicaActiva) {
         musicaFondo.pause();
         musicaActiva = false;
@@ -2031,6 +2207,7 @@ void controlEvent(ControlEvent e) {
     }
 
     if (esVolver) {
+      out.playNote(0, 0.15, 350);
       if (coloresAzules && (pantalla == 7 || pantalla == 8 || pantalla == 9)) {
         // Volver al menú Procesos Matemáticos
         pantalla = 10;
@@ -2063,9 +2240,13 @@ void controlEvent(ControlEvent e) {
       puntos = 0;
     }
 
-    if (esMiscelaniaVirus) pantalla = 1;
+    if (esMiscelaniaVirus) {
+      out.playNote(0, 0.15, 500);
+      pantalla = 1;
+    }
 
     if (esVirus) {
+      out.playNote(0, 0.2, 600);
       pantalla = 2;
       virus1 = 10;
       virus2 = 10;
@@ -2080,6 +2261,7 @@ void controlEvent(ControlEvent e) {
     }
 
     if (esFama) {
+      out.playNote(0, 0.2, 650);
       pantalla = 3;
       intento1 = intento2 = intento3 = intento4 = -1;
       intentos = 0;
@@ -2088,19 +2270,28 @@ void controlEvent(ControlEvent e) {
       puntos = 0;
     }
 
-    if (esMargarita) pantalla = 11;
+    if (esMargarita) {
+      out.playNote(0, 0.2, 700);
+      pantalla = 11;
+    }
     if (esExtras) {
+      out.playNote(0, 0.15, 450);
       pantalla = 4;
       intento1 = intento2 = intento3 = intento4 = -1;
     }
     if (esHexConversor) {
+      out.playNote(0, 0.18, 550);
       pantalla = 5;
       hexDigito1 = hexDigito2 = hexDigito3 = hexDigito4 = -1;
       hexDecimal = 0;
       hexContador = 0;
     }
-    if (esOperaciones) pantalla = 6;
+    if (esOperaciones) {
+      out.playNote(0, 0.15, 500);
+      pantalla = 6;
+    }
     if (esProcesosMat) {
+      out.playNote(0, 0.15, 480);
       pantalla = 10;
       coloresAzules = true;
     }
@@ -3168,6 +3359,25 @@ void keyPressed() {
         p7 = 1;
         p8 = 1;
         p9 = 1;
+        quito1 = 0;
+        quito2 = 0;
+        quito3 = 0;
+        quito4 = 0;
+        quito5 = 0;
+        quito6 = 0;
+        quito7 = 0;
+        quito8 = 0;
+        quito9 = 0;
+        orden1 = 0;
+        orden2 = 0;
+        orden3 = 0;
+        orden4 = 0;
+        orden5 = 0;
+        orden6 = 0;
+        orden7 = 0;
+        orden8 = 0;
+        orden9 = 0;
+        contadorOrden = 0;
         fichasRestantes = 9;
         turno = 1;
         ganadorMargarita = 0;
@@ -3188,54 +3398,81 @@ void keyPressed() {
       if (sel1 == 1) {
         if (p1 == 1) {
           p1 = 0;
+          quito1 = turno;
+          contadorOrden = contadorOrden + 1;
+          orden1 = contadorOrden;
           fichasRestantes = fichasRestantes - 1;
         }
       } else {
         if (sel1 == 2) {
           if (p2 == 1) {
             p2 = 0;
+            quito2 = turno;
+            contadorOrden = contadorOrden + 1;
+            orden2 = contadorOrden;
             fichasRestantes = fichasRestantes - 1;
           }
         } else {
           if (sel1 == 3) {
             if (p3 == 1) {
               p3 = 0;
+              quito3 = turno;
+              contadorOrden = contadorOrden + 1;
+              orden3 = contadorOrden;
               fichasRestantes = fichasRestantes - 1;
             }
           } else {
             if (sel1 == 4) {
               if (p4 == 1) {
                 p4 = 0;
+                quito4 = turno;
+                contadorOrden = contadorOrden + 1;
+                orden4 = contadorOrden;
                 fichasRestantes = fichasRestantes - 1;
               }
             } else {
               if (sel1 == 5) {
                 if (p5 == 1) {
                   p5 = 0;
+                  quito5 = turno;
+                  contadorOrden = contadorOrden + 1;
+                  orden5 = contadorOrden;
                   fichasRestantes = fichasRestantes - 1;
                 }
               } else {
                 if (sel1 == 6) {
                   if (p6 == 1) {
                     p6 = 0;
+                    quito6 = turno;
+                    contadorOrden = contadorOrden + 1;
+                    orden6 = contadorOrden;
                     fichasRestantes = fichasRestantes - 1;
                   }
                 } else {
                   if (sel1 == 7) {
                     if (p7 == 1) {
                       p7 = 0;
+                      quito7 = turno;
+                      contadorOrden = contadorOrden + 1;
+                      orden7 = contadorOrden;
                       fichasRestantes = fichasRestantes - 1;
                     }
                   } else {
                     if (sel1 == 8) {
                       if (p8 == 1) {
                         p8 = 0;
+                        quito8 = turno;
+                        contadorOrden = contadorOrden + 1;
+                        orden8 = contadorOrden;
                         fichasRestantes = fichasRestantes - 1;
                       }
                     } else {
                       if (sel1 == 9) {
                         if (p9 == 1) {
                           p9 = 0;
+                          quito9 = turno;
+                          contadorOrden = contadorOrden + 1;
+                          orden9 = contadorOrden;
                           fichasRestantes = fichasRestantes - 1;
                         }
                       }
@@ -3253,54 +3490,81 @@ void keyPressed() {
         if (sel2 == 1) {
           if (p1 == 1) {
             p1 = 0;
+            quito1 = turno;
+            contadorOrden = contadorOrden + 1;
+            orden1 = contadorOrden;
             fichasRestantes = fichasRestantes - 1;
           }
         } else {
           if (sel2 == 2) {
             if (p2 == 1) {
               p2 = 0;
+              quito2 = turno;
+              contadorOrden = contadorOrden + 1;
+              orden2 = contadorOrden;
               fichasRestantes = fichasRestantes - 1;
             }
           } else {
             if (sel2 == 3) {
               if (p3 == 1) {
                 p3 = 0;
+                quito3 = turno;
+                contadorOrden = contadorOrden + 1;
+                orden3 = contadorOrden;
                 fichasRestantes = fichasRestantes - 1;
               }
             } else {
               if (sel2 == 4) {
                 if (p4 == 1) {
                   p4 = 0;
+                  quito4 = turno;
+                  contadorOrden = contadorOrden + 1;
+                  orden4 = contadorOrden;
                   fichasRestantes = fichasRestantes - 1;
                 }
               } else {
                 if (sel2 == 5) {
                   if (p5 == 1) {
                     p5 = 0;
+                    quito5 = turno;
+                    contadorOrden = contadorOrden + 1;
+                    orden5 = contadorOrden;
                     fichasRestantes = fichasRestantes - 1;
                   }
                 } else {
                   if (sel2 == 6) {
                     if (p6 == 1) {
                       p6 = 0;
+                      quito6 = turno;
+                      contadorOrden = contadorOrden + 1;
+                      orden6 = contadorOrden;
                       fichasRestantes = fichasRestantes - 1;
                     }
                   } else {
                     if (sel2 == 7) {
                       if (p7 == 1) {
                         p7 = 0;
+                        quito7 = turno;
+                        contadorOrden = contadorOrden + 1;
+                        orden7 = contadorOrden;
                         fichasRestantes = fichasRestantes - 1;
                       }
                     } else {
                       if (sel2 == 8) {
                         if (p8 == 1) {
                           p8 = 0;
+                          quito8 = turno;
+                          contadorOrden = contadorOrden + 1;
+                          orden8 = contadorOrden;
                           fichasRestantes = fichasRestantes - 1;
                         }
                       } else {
                         if (sel2 == 9) {
                           if (p9 == 1) {
                             p9 = 0;
+                            quito9 = turno;
+                            contadorOrden = contadorOrden + 1;
+                            orden9 = contadorOrden;
                             fichasRestantes = fichasRestantes - 1;
                           }
                         }
