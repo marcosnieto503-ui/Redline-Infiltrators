@@ -1968,7 +1968,11 @@ void draw() {
   }
   
   // Mostrar versión en la esquina inferior derecha
-  fill(0, 255, 70, 150);
+  if (coloresAzules) {
+    fill(0, 100, 255, 150);
+  } else {
+    fill(0, 255, 70, 150);
+  }
   textSize(14);
   textAlign(RIGHT, BOTTOM);
   text("Beta 1.0", width - 20, height - 10);
