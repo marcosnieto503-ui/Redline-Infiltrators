@@ -1536,8 +1536,8 @@ void draw() {
     int fH = 50;
     int f = 0;
     while (f < 6) {
-      int fx = fX + (f % 3) * 110;
-      int fy = fY + (f / 3) * 50;
+      int fx = fX + (f % 3) * 140;
+      int fy = fY + (f / 3) * 70;
       if (taylorFuncion == f + 1) {
         fill(colorBotonActivo9);
       } else {
