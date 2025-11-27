@@ -1966,6 +1966,13 @@ void draw() {
     }
     break;
   }
+  
+  // Mostrar versión en la esquina inferior derecha
+  fill(0, 255, 70, 150);
+  textSize(14);
+  textAlign(RIGHT, BOTTOM);
+  text("Beta 1.0", width - 20, height - 10);
+  textAlign(CENTER, CENTER);
 }
 
 //=====================================================================
@@ -2021,10 +2028,27 @@ void controlEvent(ControlEvent e) {
 
     if (esVolver) {
       if (coloresAzules && (pantalla == 7 || pantalla == 8 || pantalla == 9)) {
+        // Volver al menú Procesos Matemáticos
         pantalla = 10;
       } else {
-        pantalla = 0;
-        coloresAzules = false;
+        if (pantalla == 2 || pantalla == 3 || pantalla == 11) {
+          // Volver al menú Miscelania Juegos desde los juegos (Virus, Punto y Fama, La Margarita)
+          pantalla = 1;
+        } else {
+          if (pantalla == 5) {
+            // Volver al menú Extras desde Hex Conversor
+            pantalla = 4;
+          } else {
+            if (pantalla == 1 || pantalla == 4 || pantalla == 10) {
+              // Volver al menú principal desde los submenús
+              pantalla = 0;
+              coloresAzules = false;
+            } else {
+              pantalla = 0;
+              coloresAzules = false;
+            }
+          }
+        }
       }
       juegoVirus = false;
       ganador = 0;
