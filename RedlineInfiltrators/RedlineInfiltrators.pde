@@ -141,7 +141,7 @@ void setup() {
   fullScreen();
 
   // Cargar logo
-  logoImagen = loadImage("logo.png");
+  logoImagen = loadImage("data/logo.png");
 
   // Fuentes
   fuente = createFont("Courier New", 28);
@@ -418,7 +418,7 @@ void setup() {
   // Inicializar audio
   minim = new Minim(this);
   out = minim.getLineOut();
-  musicaFondo = minim.loadFile("musica.mp3");
+  musicaFondo = minim.loadFile("data/musica.mp3");
   musicaFondo.loop();
 
   // Generar código secreto (con dígitos repetibles)
